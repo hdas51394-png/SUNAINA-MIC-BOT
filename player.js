@@ -1134,16 +1134,17 @@ async function handlePlayerModalSubmit(client, modal, player, channel) {
                 player.queue.add(track);
                 requesters.set(track.info.uri, modal.user.username);
                 added = 1;
-            }
-
             if (!player.playing && !player.paused && !player.current) {
-                player.play();
-            }
-
-            await refreshNowPlayingPanel(client, player.guildId);
-            await modal.editReply({ content: `✅ Added ${added} track${added === 1 ? '' : 's'} to queue.` }).catch(() => {});
-            return;
+    if (player.queue && player.queue.length > 0) {
+        try {
+            await player.play();
+        } catch (error) {
+            console.error("[SUNAINA MUSIC] Playback failed:", error);
         }
+    } else {
+        console.warn("[SUNAINA MUSIC] Queue empty. Skipping playback.");
+    }
+}
 
         if (modal.customId === 'player_modal_volume') {
             const raw = modal.fields.getTextInputValue('volume')?.trim();
