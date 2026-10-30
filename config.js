@@ -19,7 +19,7 @@ module.exports = {
   embedTimeout: 5,
   showProgressBar: false,  // Show progress bar in track embed
   showVisualizer: false,  // Show visualizer on music card (disabled for low-memory optimization)
-  generateSongCard: true,  // custom song card image, if false uses thumbnail
+  generateSongCard: false,  // custom song card image, if false uses thumbnail
   metadataTag: true,  // If true, always show Song Details even when the card image is present
   lowMemoryMode: true,   // Performance optimizations for low-memory environments (512MB RAM)
   errorLog: "", 
